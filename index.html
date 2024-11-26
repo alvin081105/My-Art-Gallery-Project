@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Art Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to Your Art Gallery</h1>
+    <p>Upload and organize your masterpieces with ease!</p>
+  </header>
+
+  <main>
+    <div class="gallery-wrapper">
+      <button class="nav-btn prev-btn">❮</button>
+      <div class="gallery">
+        <div class="carousel" id="carousel">
+          <!-- Default "+" block -->
+          <div class="item add-new">
+            <div class="add-container">
+              <span>+</span>
+              <input type="file" accept="image/*" id="imageUpload" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="nav-btn next-btn">❯</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2024 Enhanced Art Gallery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+    let items = []; // Store uploaded images
+
+    // Add "+" block
+    const addPlusBlock = () => {
+      const plusBlock = document.createElement('div');
+      plusBlock.classList.add('item', 'add-new');
+      plusBlock.innerHTML = `
+        <div class="add-container">
+          <span>+</span>
+          <input type="file" accept="image/*" onchange="uploadImage(event)" />
+        </div>`;
+      carousel.appendChild(plusBlock);
+    };
+
+    // Handle image upload
+    const uploadImage = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imageBlock = document.createElement('div');
+          imageBlock.classList.add('item');
+          imageBlock.style.backgroundImage = `url(${e.target.result})`;
+          items.push(imageBlock);
+          currentIndex = items.length - 1;
+          updateGallery();
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    // Update gallery display
+    const updateGallery = () => {
+      carousel.innerHTML = ''; // Clear gallery
+      if (items[currentIndex]) {
+        carousel.appendChild(items[currentIndex]); // Add current image
+      }
+      addPlusBlock(); // Always add "+" block
+    };
+
+    // Navigation logic
+    prevBtn.addEventListener('click', () => {
+      if (items.length > 0) {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updateGallery();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (items.length > 0) {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateGallery();
+      }
+    });
+
+    // Initialize gallery
+    updateGallery();
+  </script>
+</body>
+</html>

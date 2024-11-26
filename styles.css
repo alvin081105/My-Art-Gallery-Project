@@ -1,0 +1,136 @@
+/* styles.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  color: #ffd700;
+  font-size: 3rem;
+}
+
+header p {
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+.gallery-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gallery {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.item {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.add-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-container {
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #ffd700;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-container span {
+  font-size: 5rem;
+  color: #ffd700;
+}
+
+.add-container input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 3rem;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.prev-btn {
+  left: -50px;
+}
+
+.next-btn {
+  right: -50px;
+}
+
+footer {
+  margin-top: 20px;
+  color: #aaa;
+  font-size: 1rem;
+}
